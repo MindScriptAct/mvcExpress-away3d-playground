@@ -107,10 +107,12 @@ public class HoverCameraManager {
 		switch (event.keyCode) {
 			case Keyboard.UP: 
 			case Keyboard.W: 
+			case Keyboard.COMMA: // for dworak keiboard
 				tiltIncrement = tiltSpeed;
 				break;
 			case Keyboard.DOWN: 
 			case Keyboard.S: 
+			case Keyboard.O: // for dworak keiboard
 				tiltIncrement = -tiltSpeed;
 				break;
 			case Keyboard.LEFT: 
@@ -119,12 +121,15 @@ public class HoverCameraManager {
 				break;
 			case Keyboard.RIGHT: 
 			case Keyboard.D: 
+			case Keyboard.E: // for dworak keiboard
 				panIncrement = -panSpeed;
 				break;
 			case Keyboard.Z: 
+			case Keyboard.SEMICOLON: // for dworak keiboard
 				distanceIncrement = distanceSpeed;
 				break;
 			case Keyboard.X: 
+			case Keyboard.Q: // for dworak keiboard
 				distanceIncrement = -distanceSpeed;
 				break;
 		}
@@ -139,16 +144,21 @@ public class HoverCameraManager {
 			case Keyboard.W: 
 			case Keyboard.DOWN: 
 			case Keyboard.S: 
+			case Keyboard.COMMA: // for dworak keiboard
+			case Keyboard.O: // for dworak keiboard
 				tiltIncrement = 0;
 				break;
 			case Keyboard.LEFT: 
 			case Keyboard.A: 
 			case Keyboard.RIGHT: 
 			case Keyboard.D: 
+			case Keyboard.E: // for dworak keiboard
 				panIncrement = 0;
 				break;
 			case Keyboard.Z: 
 			case Keyboard.X: 
+			case Keyboard.SEMICOLON: // for dworak keiboard
+			case Keyboard.Q: // for dworak keiboard
 				distanceIncrement = 0;
 				break;
 		}
