@@ -1,4 +1,4 @@
-package com.mindscriptact.helloAway3d_1 {
+package com.mindscriptact.e1_helloAway3d {
 import away3d.cameras.*;
 import away3d.containers.*;
 import away3d.controllers.*;
