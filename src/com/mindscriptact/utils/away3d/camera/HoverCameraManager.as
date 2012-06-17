@@ -24,7 +24,7 @@ public class HoverCameraManager {
 	//navigation variables
 	private var tiltSpeed:Number = 2;
 	private var panSpeed:Number = 2;
-	private var distanceSpeed:Number = 2;
+	private var distanceSpeed:Number = 10;
 	private var tiltIncrement:Number = 0;
 	private var panIncrement:Number = 0;
 	private var distanceIncrement:Number = 0;
@@ -70,6 +70,7 @@ public class HoverCameraManager {
 			stage.addEventListener(Event.ENTER_FRAME, onEnterFrame);
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, onKeyDown);
 			stage.addEventListener(KeyboardEvent.KEY_UP, onKeyUp);
+			stage.addEventListener(MouseEvent.MOUSE_WHEEL, handleMouseWheel);
 		} else {
 			throw Error("Failed to get stage. Please add view3d to stage before using HoverCameraManager.");
 		}
@@ -135,6 +136,16 @@ public class HoverCameraManager {
 		}
 	}
 	
+	private function handleMouseWheel(event:MouseEvent):void {
+		if (event.delta < 0) {
+			cameraController.distance += distanceSpeed * 10;
+		} else {
+			if (cameraController.distance - distanceSpeed * 10 > 0) {
+				cameraController.distance -= distanceSpeed * 10;
+			}
+		}
+	}
+	
 	/**
 	 * Key up listener for camera control
 	 */
@@ -175,7 +186,9 @@ public class HoverCameraManager {
 		
 		cameraController.panAngle += panIncrement;
 		cameraController.tiltAngle += tiltIncrement;
-		cameraController.distance += distanceIncrement;
+		if (distanceIncrement && cameraController.distance + distanceIncrement > 0) {
+			cameraController.distance += distanceIncrement;
+		}
 		
 		for (var i:int = 0; i < folowers.length; i++) {
 			folowers[i].position = camera.position;
