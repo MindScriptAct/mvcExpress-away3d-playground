@@ -50,7 +50,6 @@ public class HelloAway3d extends Sprite {
 	 */
 	private function init():void {
 		initEngine();
-		//initText();
 		initLights();
 		initCamera();
 		
@@ -95,7 +94,7 @@ public class HelloAway3d extends Sprite {
 	}
 	
 	/**
-	 * Initialise the materialo
+	 * Initialise the materials
 	 */
 	private function initMaterials():void {
 		// red color
