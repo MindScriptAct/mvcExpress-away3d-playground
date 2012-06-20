@@ -12,7 +12,7 @@ import away3d.materials.lightpickers.*;
 import away3d.materials.methods.*;
 import away3d.primitives.*;
 import away3d.textures.*;
-import com.mindscriptact.utils.away3d.camera.HoverCameraManager;
+import away3dplus.controllers.SimpleHoverController;
 
 import flash.display.*;
 import flash.events.*;
@@ -21,6 +21,7 @@ import flash.text.*;
 import flash.ui.*;
 
 [SWF(backgroundColor="#000000",frameRate="30",quality="LOW")]
+
 public class HelloAway3d extends Sprite {
 	
 	//engine variables
@@ -90,7 +91,7 @@ public class HelloAway3d extends Sprite {
 	}
 	
 	private function initCamera():void {
-		var hoverCameraManager:HoverCameraManager = new HoverCameraManager(view, 500, [pointLight]);
+		var hoverCameraManager:SimpleHoverController = new SimpleHoverController(view, 500, [pointLight]);
 	}
 	
 	/**

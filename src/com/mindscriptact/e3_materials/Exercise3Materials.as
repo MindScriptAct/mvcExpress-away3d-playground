@@ -12,7 +12,7 @@ import away3d.materials.lightpickers.*;
 import away3d.materials.methods.*;
 import away3d.primitives.*;
 import away3d.textures.*;
-import com.mindscriptact.utils.away3d.camera.HoverCameraManager;
+import away3dplus.controllers.SimpleHoverController;
 
 import flash.display.*;
 import flash.events.*;
@@ -34,7 +34,7 @@ public class Exercise3Materials extends Sprite {
 	
 	// explosio texture 32x32
 	[Embed(source="/pic/explode.png")]
-	private var ExplodeTextureBitmap:Class;	
+	private var ExplodeTextureBitmap:Class;
 	
 	//engine variables
 	private var view:View3D;
@@ -109,7 +109,7 @@ public class Exercise3Materials extends Sprite {
 	}
 	
 	private function initCamera():void {
-		var hoverCameraManager:HoverCameraManager = new HoverCameraManager(view, 500, [pointLight]);
+		var hoverCameraManager:SimpleHoverController = new SimpleHoverController(view, 500, [pointLight]);
 	}
 	
 	/**
@@ -130,29 +130,29 @@ public class Exercise3Materials extends Sprite {
 				// red color with alpha
 				redColorAlphaMaterial = new ColorMaterial(0xFF0000, 0.5);
 				redColorAlphaMaterial.lightPicker = lightPicker;
-			
+				
 				//BitmapMaterial	 	BitmapMaterial is a material that uses a BitmapData texture as the surface's diffuse colour.
 				// DEPRECATED !!!
-			
+				
 				//TextureMaterial	 	TextureMaterial is a material that uses a texture as the surface's diffuse colour.
 				//metalPicMaterial = new TextureMaterial(new MetalTextureBitmap().bitmapData);
 				
 				//var bd:BitmapData = new ExplodeTextureBitmap().bitmapData;
 				
-				metalPicMaterial = new TextureMaterial( new BitmapTexture(new BeensTextureBitmap().bitmapData), false)
+				metalPicMaterial = new TextureMaterial(new BitmapTexture(new BeensTextureBitmap().bitmapData), false)
 				metalPicMaterial.lightPicker = lightPicker;
 				
-				metalPicMaterial2 = new TextureMaterial( new BitmapTexture(new BeensTextureBitmap().bitmapData), true)
+				metalPicMaterial2 = new TextureMaterial(new BitmapTexture(new BeensTextureBitmap().bitmapData), true)
 				metalPicMaterial2.lightPicker = lightPicker;
 				//TODO : how to get png TRANSPARANCY?
 				//TODO : repeat in constructor ??
 				//TODO : mipmap in constructor ??
-				
+			
 			}
 		}
-		
+	
 		//TODO:
-		
+	
 		//SkyBoxMaterial	 	SkyBoxMaterial is a material exclusively used to render skyboxes\
 		//DefaultMaterialBase	DefaultMaterialBase forms an abstract base class for the default materials provided by Away3D and use methods to define their appearance.
 		//LightSources	 
@@ -184,8 +184,8 @@ public class Exercise3Materials extends Sprite {
 		metalCube2 = new Mesh(newCubeGeometry, metalPicMaterial2);
 		metalCube2.x = 75;
 		metalCube2.y = 150;
-		scene.addChild(metalCube2);		
-		
+		scene.addChild(metalCube2);
+	
 	}
 	
 	/**
