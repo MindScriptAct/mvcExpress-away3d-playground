@@ -27,6 +27,8 @@ public class HelloAway3d extends Sprite {
 	//engine variables
 	private var view:View3D;
 	private var scene:Scene3D;
+	
+	// debug
 	private var awayStats:AwayStats;
 	
 	//light objects
@@ -39,9 +41,7 @@ public class HelloAway3d extends Sprite {
 	//scene objects
 	private var cube:Mesh;
 	
-	/**
-	 * Constructor
-	 */
+	/** Constructor */
 	public function HelloAway3d() {
 		init();
 	}

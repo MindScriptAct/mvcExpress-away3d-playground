@@ -42,6 +42,7 @@ public class Exercise2Primitives extends Sprite {
 	//engine variables
 	private var view:View3D;
 	private var scene:Scene3D;
+	// debug
 	private var awayStats:AwayStats;
 	
 	//light objects
@@ -54,9 +55,7 @@ public class Exercise2Primitives extends Sprite {
 	
 	//scene objects
 	
-	/**
-	 * Constructor
-	 */
+	/** Constructor */
 	public function Exercise2Primitives() {
 		init();
 	}
@@ -180,6 +179,7 @@ public class Exercise2Primitives extends Sprite {
 			var cone:Mesh = new Mesh(newConeGeometry, redColorMaterial);
 			cone.x = -200;
 			cone.y = 150;
+			cone.showBounds = true;
 			scene.addChild(cone);
 			
 			var cylinder:Mesh = new Mesh(newCylinderGeometry, redColorMaterial);

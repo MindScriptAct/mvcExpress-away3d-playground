@@ -39,6 +39,7 @@ public class Exercise3Materials extends Sprite {
 	//engine variables
 	private var view:View3D;
 	private var scene:Scene3D;
+	//debug
 	private var awayStats:AwayStats;
 	
 	//light objects
@@ -57,9 +58,7 @@ public class Exercise3Materials extends Sprite {
 	private var metalCube:Mesh;
 	private var metalCube2:Mesh;
 	
-	/**
-	 * Constructor
-	 */
+	/** Constructor */
 	public function Exercise3Materials() {
 		init();
 	}
