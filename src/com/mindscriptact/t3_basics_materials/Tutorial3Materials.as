@@ -1,4 +1,4 @@
-package com.mindscriptact.e3_materials {
+package com.mindscriptact.t3_basics_materials {
 import away3d.cameras.*;
 import away3d.containers.*;
 import away3d.controllers.*;
@@ -22,7 +22,7 @@ import flash.ui.*;
 
 [SWF(backgroundColor="#000000",frameRate="30",quality="LOW")]
 
-public class Exercise3Materials extends Sprite {
+public class Tutorial3Materials extends Sprite {
 	
 	// metal texture 512x512
 	[Embed(source="/pic/metalTexture.jpg")]
@@ -59,7 +59,7 @@ public class Exercise3Materials extends Sprite {
 	private var metalCube2:Mesh;
 	
 	/** Constructor */
-	public function Exercise3Materials() {
+	public function Tutorial3Materials() {
 		init();
 	}
 	

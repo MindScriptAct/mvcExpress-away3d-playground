@@ -1,4 +1,4 @@
-package com.mindscriptact.e1_helloAway3d {
+package com.mindscriptact.t1_basics_helloAway3d {
 import away3d.cameras.*;
 import away3d.containers.*;
 import away3d.controllers.*;
@@ -22,7 +22,7 @@ import flash.ui.*;
 
 [SWF(backgroundColor="#000000",frameRate="30",quality="LOW")]
 
-public class HelloAway3d extends Sprite {
+public class Tutorial1Hello3dCube extends Sprite {
 	
 	//engine variables
 	private var view:View3D;
@@ -42,7 +42,7 @@ public class HelloAway3d extends Sprite {
 	private var cube:Mesh;
 	
 	/** Constructor */
-	public function HelloAway3d() {
+	public function Tutorial1Hello3dCube() {
 		init();
 	}
 	

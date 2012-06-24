@@ -1,4 +1,4 @@
-package com.mindscriptact.e2_pvimitives {
+package com.mindscriptact.t2_basics_pvimitives {
 import away3d.cameras.*;
 import away3d.containers.*;
 import away3d.controllers.*;
@@ -23,7 +23,7 @@ import flash.ui.*;
 
 [SWF(backgroundColor="#000000",frameRate="30",quality="LOW")]
 
-public class Exercise2Primitives extends Sprite {
+public class Tutorial2Primitives extends Sprite {
 	
 	// Environment map.
 	[Embed(source="/skybox/snow_positive_x.jpg")]
@@ -56,7 +56,7 @@ public class Exercise2Primitives extends Sprite {
 	//scene objects
 	
 	/** Constructor */
-	public function Exercise2Primitives() {
+	public function Tutorial2Primitives() {
 		init();
 	}
 	
