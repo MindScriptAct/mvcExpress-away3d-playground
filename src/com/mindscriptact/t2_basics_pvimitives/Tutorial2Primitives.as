@@ -51,7 +51,7 @@ public class Tutorial2Primitives extends Sprite {
 	
 	//material objects
 	private var redColorMaterial:ColorMaterial;
-	private var cubeTexture:BitmapCubeTexture;
+	private var skyBoxCubeTexture:BitmapCubeTexture;
 	
 	//scene objects
 	
@@ -117,7 +117,7 @@ public class Tutorial2Primitives extends Sprite {
 		redColorMaterial.lightPicker = lightPicker;
 		
 		//
-		cubeTexture = new BitmapCubeTexture(new EnvPosX().bitmapData, new EnvNegX().bitmapData, new EnvPosY().bitmapData, new EnvNegY().bitmapData, new EnvPosZ().bitmapData, new EnvNegZ().bitmapData);
+		skyBoxCubeTexture = new BitmapCubeTexture(new EnvPosX().bitmapData, new EnvNegX().bitmapData, new EnvPosY().bitmapData, new EnvNegY().bitmapData, new EnvPosZ().bitmapData, new EnvNegZ().bitmapData);
 	
 	}
 	
@@ -153,6 +153,9 @@ public class Tutorial2Primitives extends Sprite {
 				
 				//RegularPolygonGeometry	 A UV RegularPolygon primitive mesh.
 				var newRegularPoligonGeometry:RegularPolygonGeometry = new RegularPolygonGeometry(100, 16, true);
+				
+				//TorusGeometry 	A UV Torus primitive mesh.
+				//var newTorusGeomentry:TorusGeometry = new TorusGeometry(50, 50, 15, 8, true);
 			}
 		}
 		
@@ -197,8 +200,12 @@ public class Tutorial2Primitives extends Sprite {
 			poligon.y = 275;
 			scene.addChild(poligon);
 			
+			//var torus:Mesh = new Mesh(newTorusGeomentry, redColorMaterial);
+			//torus.x = -275;			
+			//scene.addChild(torus);
+			
 			//SkyBox	 A SkyBox class is used to render a sky in the scene.
-			var skyBox:SkyBox = new SkyBox(cubeTexture);
+			var skyBox:SkyBox = new SkyBox(skyBoxCubeTexture);
 			scene.addChild(skyBox);
 			
 			// SegmentSet
@@ -231,7 +238,7 @@ public class Tutorial2Primitives extends Sprite {
 					wireframePlane.x = 175;
 					wireframePlane.y = 275;
 					scene.addChild(wireframePlane);
-					
+				
 				}
 			}
 		}
