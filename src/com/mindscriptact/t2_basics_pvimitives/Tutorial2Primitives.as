@@ -153,6 +153,9 @@ public class Tutorial2Primitives extends Sprite {
 				
 				//RegularPolygonGeometry	 A UV RegularPolygon primitive mesh.
 				var newRegularPoligonGeometry:RegularPolygonGeometry = new RegularPolygonGeometry(100, 16, true);
+				
+				//TorusGeometry 	A UV Torus primitive mesh.
+				//var newTorusGeomentry:TorusGeometry = new TorusGeometry(50, 50, 15, 8, true);
 			}
 		}
 		
@@ -197,6 +200,10 @@ public class Tutorial2Primitives extends Sprite {
 			poligon.y = 275;
 			scene.addChild(poligon);
 			
+			//var torus:Mesh = new Mesh(newTorusGeomentry, redColorMaterial);
+			//torus.x = -275;			
+			//scene.addChild(torus);
+			
 			//SkyBox	 A SkyBox class is used to render a sky in the scene.
 			var skyBox:SkyBox = new SkyBox(cubeTexture);
 			scene.addChild(skyBox);
@@ -231,7 +238,7 @@ public class Tutorial2Primitives extends Sprite {
 					wireframePlane.x = 175;
 					wireframePlane.y = 275;
 					scene.addChild(wireframePlane);
-					
+				
 				}
 			}
 		}
