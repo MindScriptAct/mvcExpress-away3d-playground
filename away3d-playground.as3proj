@@ -74,7 +74,7 @@
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
-    <compile path="src\com\mindscriptact\t2_basics_pvimitives\Tutorial2Primitives.as" />
+    <compile path="src\com\mindscriptact\t1_basics_helloAway3d\Tutorial1Hello3dCube.as" />
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>

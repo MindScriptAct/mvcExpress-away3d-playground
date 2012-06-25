@@ -28,13 +28,23 @@ public class Tutorial3Materials extends Sprite {
 	[Embed(source="/pic/metalTexture.jpg")]
 	private var MetalTextureBitmap:Class;
 	
-	// been texture 64x64
-	[Embed(source="/pic/bakedBeens.jpg")]
-	private var BeensTextureBitmap:Class;
-	
 	// explosio texture 32x32
 	[Embed(source="/pic/explode.png")]
 	private var ExplodeTextureBitmap:Class;
+	
+	// Environment map.
+	[Embed(source="/skybox/snow_positive_x.jpg")]
+	private var EnvPosX:Class;
+	[Embed(source="/skybox/snow_positive_y.jpg")]
+	private var EnvPosY:Class;
+	[Embed(source="/skybox/snow_positive_z.jpg")]
+	private var EnvPosZ:Class;
+	[Embed(source="/skybox/snow_negative_x.jpg")]
+	private var EnvNegX:Class;
+	[Embed(source="/skybox/snow_negative_y.jpg")]
+	private var EnvNegY:Class;
+	[Embed(source="/skybox/snow_negative_z.jpg")]
+	private var EnvNegZ:Class;
 	
 	//engine variables
 	private var view:View3D;
@@ -47,16 +57,8 @@ public class Tutorial3Materials extends Sprite {
 	private var lightPicker:StaticLightPicker;
 	
 	//material objects
-	private var redColorMaterial:ColorMaterial;
-	private var redColorAlphaMaterial:ColorMaterial;
-	private var metalPicMaterial:TextureMaterial;
-	private var metalPicMaterial2:TextureMaterial;
 	
 	//scene objects
-	private var redCube:Mesh;
-	private var redAlphaCube:Mesh
-	private var metalCube:Mesh;
-	private var metalCube2:Mesh;
 	
 	/** Constructor */
 	public function Tutorial3Materials() {
@@ -71,8 +73,7 @@ public class Tutorial3Materials extends Sprite {
 		initLights();
 		initCamera();
 		
-		initMaterials();
-		initObjects();
+		initMaterialsAndObjects();
 		
 		initListeners();
 	}
@@ -112,79 +113,197 @@ public class Tutorial3Materials extends Sprite {
 	}
 	
 	/**
-	 * Initialise the materials
+	 * Initialise the materials and objects
 	 */
-	private function initMaterials():void {
+	private function initMaterialsAndObjects():void {
 		
-		// MaterialBase
-		{
-			
-			// DefaultMaterialBase - DefaultMaterialBase forms an abstract base class for the default materials provided by Away3D and use methods to define their appearance.
-			{
-				//ColorMaterial	 		ColorMaterial is a material that uses a flat colour as the surfaces diffuse.
-				// red color
-				redColorMaterial = new ColorMaterial(0xFF0000);
-				redColorMaterial.lightPicker = lightPicker;
-				
-				// red color with alpha
-				redColorAlphaMaterial = new ColorMaterial(0xFF0000, 0.5);
-				redColorAlphaMaterial.lightPicker = lightPicker;
-				
-				//BitmapMaterial	 	BitmapMaterial is a material that uses a BitmapData texture as the surface's diffuse colour.
-				// DEPRECATED !!!
-				
-				//TextureMaterial	 	TextureMaterial is a material that uses a texture as the surface's diffuse colour.
-				//metalPicMaterial = new TextureMaterial(new MetalTextureBitmap().bitmapData);
-				
-				//var bd:BitmapData = new ExplodeTextureBitmap().bitmapData;
-				
-				metalPicMaterial = new TextureMaterial(new BitmapTexture(new BeensTextureBitmap().bitmapData), false)
-				metalPicMaterial.lightPicker = lightPicker;
-				
-				metalPicMaterial2 = new TextureMaterial(new BitmapTexture(new BeensTextureBitmap().bitmapData), true)
-				metalPicMaterial2.lightPicker = lightPicker;
-				//TODO : how to get png TRANSPARANCY?
-				//TODO : repeat in constructor ??
-				//TODO : mipmap in constructor ??
-			
-			}
-		}
-	
 		//TODO:
-	
+		
 		//SkyBoxMaterial	 	SkyBoxMaterial is a material exclusively used to render skyboxes\
 		//DefaultMaterialBase	DefaultMaterialBase forms an abstract base class for the default materials provided by Away3D and use methods to define their appearance.
 		//LightSources	 
 		//MaterialBase	 		MaterialBase forms an abstract base class for any material.
 		//SegmentMaterial	 	SegmentMaterial is a material exclusively used to render wireframe object
 		//VideoMaterial
-	
-	}
-	
-	/**
-	 * Initialise the scene objects
-	 */
-	private function initObjects():void {
-		// simle cube
+		
+		//TODO : repeat in constructor ??
+		//TODO : mipmap in constructor ??
+		
+		//----------------------------------
+		//     debug trident
+		//----------------------------------
+		var trident:Trident = new Trident(500);
+		scene.addChild(trident);
+		
+		//----------------------------------
+		//     sky Box texture
+		//----------------------------------
+		// cube texture
+		var skyBoxCubeTexture:BitmapCubeTexture = new BitmapCubeTexture(new EnvPosX().bitmapData, new EnvNegX().bitmapData, new EnvPosY().bitmapData, new EnvNegY().bitmapData, new EnvPosZ().bitmapData, new EnvNegZ().bitmapData);
+		//SkyBox	 A SkyBox class is used to render a sky in the scene.
+		var skyBox:SkyBox = new SkyBox(skyBoxCubeTexture);
+		scene.addChild(skyBox);
+		
+		//*
+		//----------------------------------
+		//   Red cube  
+		//----------------------------------
+		//ColorMaterial	 		ColorMaterial is a material that uses a flat colour as the surfaces diffuse.
+		// red color
+		var redColorMaterial:ColorMaterial = new ColorMaterial(0xFF0000);
+		redColorMaterial.lightPicker = lightPicker;
+		// geomatry
 		var newCubeGeometry:CubeGeometry = new CubeGeometry(100, 100, 100, 10, 10, 10, false);
-		redCube = new Mesh(newCubeGeometry, redColorMaterial);
-		redCube.x = -75;
+		// mesh
+		var redCube:Mesh = new Mesh(newCubeGeometry, redColorMaterial);
+		redCube.x = 75;
 		scene.addChild(redCube);
+		//*/
 		
-		redAlphaCube = new Mesh(newCubeGeometry, redColorAlphaMaterial);
-		redAlphaCube.x = 75;
+		//*
+		//----------------------------------
+		//    Red transparent cube 
+		//----------------------------------
+		// red color with alpha
+		var redColorAlphaMaterial:ColorMaterial = new ColorMaterial(0xFF0000, 0.5);
+		redColorAlphaMaterial.lightPicker = lightPicker;
+		// geomatry
+		newCubeGeometry = new CubeGeometry(100, 100, 100, 10, 10, 10, false);
+		// mesh
+		var redAlphaCube:Mesh = new Mesh(newCubeGeometry, redColorAlphaMaterial);
+		redAlphaCube.x = -75;
 		scene.addChild(redAlphaCube);
+		//*/
 		
-		metalCube = new Mesh(newCubeGeometry, metalPicMaterial);
-		metalCube.x = -75;
-		metalCube.y = 150;
-		scene.addChild(metalCube);
+		//*
+		//----------------------------------
+		//    jpg picture
+		//----------------------------------
+		//BitmapMaterial
+		metalTexture = new BitmapTexture(new MetalTextureBitmap().bitmapData);
+		//TextureMaterial
+		var metalPicMaterialSmooth:TextureMaterial = new TextureMaterial(metalTexture)
+		metalPicMaterialSmooth.lightPicker = lightPicker;
+		// geomatry
+		newCubeGeometry = new CubeGeometry(100, 100, 100, 10, 10, 10, false);
+		// mesh		
+		var metalCubeSmooth:Mesh = new Mesh(newCubeGeometry, metalPicMaterialSmooth);
+		metalCubeSmooth.x = 75;
+		metalCubeSmooth.y = 150;
+		scene.addChild(metalCubeSmooth);
+		//*/
 		
-		metalCube2 = new Mesh(newCubeGeometry, metalPicMaterial2);
-		metalCube2.x = 75;
-		metalCube2.y = 150;
-		scene.addChild(metalCube2);
-	
+		//*
+		//----------------------------------
+		//    jpg picture without smooth
+		//----------------------------------
+		//BitmapMaterial
+		var metalTexture:BitmapTexture = new BitmapTexture(new MetalTextureBitmap().bitmapData);
+		//TextureMaterial		
+		var metalPicMaterialPixelated:TextureMaterial = new TextureMaterial(metalTexture, false)
+		metalPicMaterialPixelated.lightPicker = lightPicker;
+		// geomatry
+		newCubeGeometry = new CubeGeometry(100, 100, 100, 10, 10, 10, false);
+		// mesh		
+		var metalCubePixelated:Mesh = new Mesh(newCubeGeometry, metalPicMaterialPixelated);
+		metalCubePixelated.x = -75;
+		metalCubePixelated.y = 150;
+		scene.addChild(metalCubePixelated);
+		//*/
+		
+		//*
+		//----------------------------------
+		//    jpg picture with transparency
+		//----------------------------------
+		//BitmapMaterial
+		metalTexture = new BitmapTexture(new MetalTextureBitmap().bitmapData);
+		//TextureMaterial
+		var metalPicMaterialAlpha:TextureMaterial = new TextureMaterial(metalTexture)
+		metalPicMaterialAlpha.lightPicker = lightPicker;
+		metalPicMaterialAlpha.alpha = 0.7;
+		// geomatry
+		newCubeGeometry = new CubeGeometry(100, 100, 100, 10, 10, 10, false);
+		// mesh		
+		var metalCubeAlpha:Mesh = new Mesh(newCubeGeometry, metalPicMaterialAlpha);
+		metalCubeAlpha.x = -205;
+		metalCubeAlpha.y = 150;
+		scene.addChild(metalCubeAlpha);
+		//*/
+		
+		//*
+		//----------------------------------
+		//   png picture  
+		//----------------------------------
+		//BitmapMaterial
+		var explodeTexture:BitmapTexture = new BitmapTexture(new ExplodeTextureBitmap().bitmapData);
+		//TextureMaterial		
+		var explodeMaterialNoAlphaBlending:TextureMaterial = new TextureMaterial(explodeTexture);
+		explodeMaterialNoAlphaBlending.lightPicker = lightPicker;
+		// geomatry
+		newCubeGeometry = new CubeGeometry(100, 100, 100, 10, 10, 10, false);
+		// mesh
+		var explosionCubeNoAlpha:Mesh = new Mesh(newCubeGeometry, explodeMaterialNoAlphaBlending);
+		explosionCubeNoAlpha.x = 200;
+		explosionCubeNoAlpha.y = -150;
+		scene.addChild(explosionCubeNoAlpha);
+		//*/
+		
+		//*
+		//----------------------------------
+		//     png picture with alphaBlending
+		//----------------------------------
+		//BitmapMaterial
+		explodeTexture = new BitmapTexture(new ExplodeTextureBitmap().bitmapData);
+		//TextureMaterial		
+		var explodeMaterialSmooth:TextureMaterial = new TextureMaterial(explodeTexture);
+		explodeMaterialSmooth.lightPicker = lightPicker;
+		explodeMaterialSmooth.alphaBlending = true;
+		// geomatry
+		newCubeGeometry = new CubeGeometry(100, 100, 100, 10, 10, 10, false);
+		// mesh		
+		var explosionCubeSmooth:Mesh = new Mesh(newCubeGeometry, explodeMaterialSmooth);
+		explosionCubeSmooth.x = 75;
+		explosionCubeSmooth.y = -150;
+		scene.addChild(explosionCubeSmooth);
+		//*/
+		
+		//*
+		//----------------------------------
+		//   png picture with alphaThreshold  
+		//----------------------------------
+		//BitmapMaterial
+		explodeTexture = new BitmapTexture(new ExplodeTextureBitmap().bitmapData);
+		//TextureMaterial	
+		var explodeMaterialWithAlphaThreshhold:TextureMaterial = new TextureMaterial(explodeTexture);
+		explodeMaterialWithAlphaThreshhold.lightPicker = lightPicker;
+		explodeMaterialWithAlphaThreshhold.alphaThreshold = 0.9;
+		// geomatry
+		newCubeGeometry = new CubeGeometry(100, 100, 100, 10, 10, 10, false);
+		// mesh		
+		var explosionCubeWithAlphaTroshhold:Mesh = new Mesh(newCubeGeometry, explodeMaterialWithAlphaThreshhold);
+		explosionCubeWithAlphaTroshhold.x = -75;
+		explosionCubeWithAlphaTroshhold.y = -150;
+		scene.addChild(explosionCubeWithAlphaTroshhold);
+		//*/
+		
+		//*
+		//----------------------------------
+		//     png picture without smooth (with alphaThreshold)
+		//----------------------------------
+		//BitmapMaterial
+		explodeTexture = new BitmapTexture(new ExplodeTextureBitmap().bitmapData);
+		//TextureMaterial	
+		var explodeMaterialPixelated:TextureMaterial = new TextureMaterial(explodeTexture, false);
+		explodeMaterialPixelated.lightPicker = lightPicker;
+		explodeMaterialPixelated.alphaThreshold = 0.9;
+		// geomatry
+		newCubeGeometry = new CubeGeometry(100, 100, 100, 10, 10, 10, false);
+		// mesh		
+		var explosionCube:Mesh = new Mesh(newCubeGeometry, explodeMaterialPixelated);
+		explosionCube.x = -200;
+		explosionCube.y = -150;
+		scene.addChild(explosionCube);
+		//*/
 	}
 	
 	/**
